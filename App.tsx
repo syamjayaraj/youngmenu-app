@@ -7,7 +7,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import AuthScreen from "./screens/AuthScreen"; // Import the AuthScreen component
 import { NativeBaseProvider } from "native-base";
-import MainScreen from "./screens/MainScreen";
 import MainNavigator from "./MainNavigator";
 
 const App = () => {
