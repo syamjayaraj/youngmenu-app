@@ -1,30 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, SafeAreaView, Dimensions } from "react-native";
-import {
-  Box,
-  Center,
-  FlatList,
-  Spinner,
-  Text,
-  VStack,
-  Button,
-  HStack,
-  IconButton,
-  Icon,
-  Heading,
-  View,
-} from "native-base";
-import { AntDesign } from "@expo/vector-icons";
-
-import SearchBar from "../common/search-bar";
+import { Box, Center, Spinner, Text, VStack, View } from "native-base";
 import CategoryList from "../common/category-list";
-import { categorySize } from "../../../config";
-import { loadItem, loadItemCategory } from "../../../apiService";
-import { ICartItem, ICategory, IProduct } from "../../../models/model";
-import ProductCard from "../product/product-card";
+import { ICartItem, ICategory, IProduct } from "../../models/model";
 import ProductDetailsModal from "../product/product-modal";
-import TotalComponent from "./total";
-import SendToKitchenButtonComponent from "./send-to-kitchen-button";
 import Total from "./total";
 import SendToKitchenButton from "./send-to-kitchen-button";
 import CartItems from "./cart-items";
@@ -48,12 +27,6 @@ export default function Menu(props: any) {
       setSelectedCategory(categoryId);
     }
   };
-
-  useEffect(() => {
-    loadItemCategoryFromApi();
-  }, []);
-
-  const loadItemCategoryFromApi = async () => {};
 
   const products: IProduct[] = [
     {
@@ -193,7 +166,10 @@ export default function Menu(props: any) {
                 <Text fontSize="xl" mb="4">
                   Cart
                 </Text>
-                <CartItems />
+                <CartItems
+                  cart={cart}
+                  updateCartQuantity={updateCartQuantity}
+                />
                 <Total />
                 <SendToKitchenButton />
               </VStack>

@@ -6,11 +6,15 @@ import { apiUrl } from "../config";
 export const postLogin = createAsyncThunk(
   "auth/login",
   async ({ email, password }: ILoginDetails) => {
-    const response = await axios.postForm(`${apiUrl}auth/login`, {
-      email,
-      password,
-    });
-    return response.data;
+    try {
+      const response = await axios.postForm(`${apiUrl}auth/login`, {
+        email,
+        password,
+      });
+      return response.data;
+    } catch (error: any) {
+      return error?.response.data;
+    }
   }
 );
 

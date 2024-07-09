@@ -11,7 +11,7 @@ export interface IInitialState {
 
 const initialState: IInitialState = {
   token: null,
-  isAuthenticated: false,
+  isAuthenticated: true,
   loading: false,
   error: null,
 };
@@ -33,13 +33,15 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(postLogin.fulfilled, async (state, action) => {
+        console.log(action?.payload, "error");
+        if (action?.payload.error) {
+        }
         state.loading = false;
         state.isAuthenticated = true;
         state.token = action.payload.token;
         await AsyncStorage.setItem("token", action.payload.token);
       })
       .addCase(postLogin.rejected, (state, action) => {
-        console.log("inside");
         state.loading = false;
         state.error = action.error.message || "Failed to login";
       });

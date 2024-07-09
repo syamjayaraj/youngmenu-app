@@ -10,7 +10,7 @@ import {
   View,
 } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
-import { ICartItem } from "../../../models/model";
+import { ICartItem } from "../../models/model";
 
 export interface ICartItems {
   cart: ICartItem[];

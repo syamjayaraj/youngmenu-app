@@ -1,10 +1,10 @@
 import { FlatList, HStack, Heading, Text, View } from "native-base";
 import ProductCard from "../product/product-card";
-import { ICartItem, IProduct, IStore } from "../../../models/model";
+import { ICartItem, IProduct, IStore } from "../../models/model";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { fetchProducts } from "../../../services/api-service";
-import { addToCart } from "../../../actions/products";
+import { fetchProducts } from "../../services/api-service";
+import { addToCart } from "../../actions/products";
 
 export interface IProducts {}
 

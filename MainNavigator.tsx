@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeComponent from "./tabs/home";
-import EventComponent from "./tabs/events";
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 
 const BottomTab = createBottomTabNavigator();
@@ -46,16 +45,6 @@ const MainNavigator = ({ navigation }: any) => {
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size, focused }) => (
             <Ionicons name="home-outline" size={24} color={"#2b2b2b"} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Orders"
-        component={EventComponent}
-        options={{
-          tabBarLabel: "Orders",
-          tabBarIcon: ({ color, size, focused }) => (
-            <MaterialIcons name="edit-note" size={24} color={"#2b2b2b"} />
           ),
         }}
       />

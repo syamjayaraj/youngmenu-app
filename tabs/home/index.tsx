@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Landing from "./landing";
-import Menu from "../components/menu";
+import Menu from "../../components/menu";
 
 const Stack = createStackNavigator();
 
