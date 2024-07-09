@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, SafeAreaView, Dimensions } from "react-native";
+import { StyleSheet, SafeAreaView, Dimensions } from "react-native";
 import {
   Box,
   Center,
@@ -11,6 +11,8 @@ import {
   HStack,
   IconButton,
   Icon,
+  Heading,
+  View,
 } from "native-base";
 import { AntDesign } from "@expo/vector-icons";
 
@@ -21,8 +23,14 @@ import { loadItem, loadItemCategory } from "../../../apiService";
 import { ICartItem, ICategory, IProduct } from "../../../models/model";
 import ProductCard from "../product/product-card";
 import ProductDetailsModal from "../product/product-modal";
+import TotalComponent from "./total";
+import SendToKitchenButtonComponent from "./send-to-kitchen-button";
+import Total from "./total";
+import SendToKitchenButton from "./send-to-kitchen-button";
+import CartItems from "./cart-items";
+import Products from "./products";
 
-export default function MenuComponent(props: any) {
+export default function Menu(props: any) {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<
     number | undefined
@@ -171,27 +179,7 @@ export default function MenuComponent(props: any) {
             }}
           >
             <Center flex={5} px="3">
-              <FlatList
-                data={products}
-                renderItem={({ item }: { item: IProduct }) => (
-                  <ProductCard
-                    image={item.image}
-                    title={item.title}
-                    price={item.price}
-                    quantity={
-                      cart.find((cartItem) => cartItem._id === item._id)
-                        ?.quantity || 0
-                    }
-                    handleAddToCart={() => handleAddToCart(item)}
-                    showProductDetailsModal={() =>
-                      handleProductDetailsModal(item)
-                    }
-                  />
-                )}
-                keyExtractor={(item) => item._id}
-                numColumns={4}
-                columnWrapperStyle={{ justifyContent: "flex-start" }}
-              />
+              <Products />
             </Center>
             <Box
               flex={2}
@@ -199,44 +187,16 @@ export default function MenuComponent(props: any) {
               borderColor="coolGray.200"
               padding="4"
               backgroundColor="white"
+              justifyContent="space-between"
             >
-              <Text fontSize="xl" mb="4">
-                Cart
-              </Text>
-              <FlatList
-                data={cart}
-                renderItem={({ item }) => (
-                  <HStack
-                    justifyContent="space-between"
-                    mb="2"
-                    alignItems="center"
-                  >
-                    <VStack>
-                      <Text>{item.title}</Text>
-                      <Text>${item.price}</Text>
-                    </VStack>
-                    <HStack alignItems="center">
-                      <IconButton
-                        icon={<Icon as={AntDesign} name="minuscircleo" />}
-                        onPress={() =>
-                          updateCartQuantity(item._id, item.quantity - 1)
-                        }
-                      />
-                      <Text mx="2">{item.quantity}</Text>
-                      <IconButton
-                        icon={<Icon as={AntDesign} name="pluscircleo" />}
-                        onPress={() =>
-                          updateCartQuantity(item._id, item.quantity + 1)
-                        }
-                      />
-                    </HStack>
-                  </HStack>
-                )}
-                keyExtractor={(item) => item._id}
-              />
-              <Button colorScheme="teal" mt="4">
-                Send to Kitchen
-              </Button>
+              <VStack space="4" flex={1}>
+                <Text fontSize="xl" mb="4">
+                  Cart
+                </Text>
+                <CartItems />
+                <Total />
+                <SendToKitchenButton />
+              </VStack>
             </Box>
           </View>
         )}

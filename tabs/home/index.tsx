@@ -2,17 +2,14 @@ import React from "react";
 import { StyleSheet, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Landing from "./landing";
-import MenuComponent from "../components/menu";
+import Menu from "../components/menu";
 
 const Stack = createStackNavigator();
 
 function HomeComponent(props: any) {
-  function LandingTitle() {
-    return <Text style={styles.title}>പറമ്പത്ത്</Text>;
-  }
-  function OtherTitle(props: any) {
-    return <Text style={styles.subTitle}>{props.name}</Text>;
-  }
+  const LandingTitle = () => {
+    return <Text style={styles.title}>Youngmenu</Text>;
+  };
 
   return (
     <Stack.Navigator
@@ -39,10 +36,9 @@ function HomeComponent(props: any) {
           headerTitle: (props: any) => <LandingTitle {...props} />,
         }}
       />
-
       <Stack.Screen
-        name="Businesses"
-        component={MenuComponent}
+        name="Menu"
+        component={Menu}
         options={{
           headerShown: true,
           headerTitle: "Select items",

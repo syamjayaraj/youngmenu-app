@@ -16,12 +16,11 @@ import { ISliderHome } from "../../models/model";
 const { width } = Dimensions.get("window");
 
 export default function Landing(props: any) {
-  const [slider, setSlider] = useState<ISliderHome[]>([]);
   const [loading, setLoading] = useState(false);
   const [tables, setTables] = useState<any>([]);
 
   useEffect(() => {
-    loadSliderHomeFromApi();
+    // loadSliderHomeFromApi();
     setTables([
       {
         id: 1,
@@ -38,14 +37,14 @@ export default function Landing(props: any) {
     ]);
   }, []);
 
-  const loadSliderHomeFromApi = async (pageParam?: number) => {
-    setLoading(true);
-    const response = await loadSliderHome();
-    if (response) {
-      setSlider(response?.data);
-      setLoading(false);
-    }
-  };
+  // const loadSliderHomeFromApi = async (pageParam?: number) => {
+  //   setLoading(true);
+  //   const response = await loadSliderHome();
+  //   if (response) {
+  //     setSlider(response?.data);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <Box bg={"white"} pt={12}>
@@ -55,7 +54,7 @@ export default function Landing(props: any) {
             <Text style={styles.title}>YoungMenu</Text>
           </View>
 
-          {loading && <ActivityIndicator size="large" color="#00ff00" />}
+          {/* {loading && <ActivityIndicator size="large" color="#00ff00" />} */}
           {!loading && (
             <View style={styles.container}>
               <View style={styles.menu}>
@@ -64,8 +63,8 @@ export default function Landing(props: any) {
                     <TouchableOpacity
                       style={styles.menuCard}
                       onPress={() =>
-                        props.navigation.navigate("Businesses", {
-                          type: "businesses",
+                        props.navigation.navigate("Menu", {
+                          // type: "tables",
                         })
                       }
                     >

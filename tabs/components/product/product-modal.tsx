@@ -24,7 +24,7 @@ const ProductDetailsModal = ({
   return (
     <Center>
       <Modal isOpen={true} onClose={closeProductDetailsModal}>
-        <Modal.Content maxWidth="400px">
+        <Modal.Content maxWidth="900px">
           <Modal.CloseButton />
           <Modal.Body>
             {quantity > 0 && (
@@ -43,13 +43,13 @@ const ProductDetailsModal = ({
             )}
             <Image
               source={{ uri: image }}
-              style={{ width: "100%", height: 150 }}
+              style={{ width: "100%", height: 500 }}
               alt={title}
             />
             <VStack space="2" padding="2">
               <Text style={styles.productTitle}>{title}</Text>
               <HStack justifyContent="space-between">
-                <Text fontSize="lg" fontWeight="bold">
+                <Text fontSize="xl" fontWeight="bold">
                   ₹ {price}
                 </Text>
               </HStack>
@@ -63,7 +63,7 @@ const ProductDetailsModal = ({
 
 const styles = StyleSheet.create({
   productTitle: {
-    fontSize: 17,
+    fontSize: 20,
   },
   badge: {
     position: "absolute",

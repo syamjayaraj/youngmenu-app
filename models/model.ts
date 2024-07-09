@@ -273,7 +273,7 @@ export interface IProductCard {
   title: string;
   price: number;
   quantity: number;
-  handleAddToCart: () => void;
+  handleAddToCart: any;
   showProductDetailsModal: () => void;
 }
 
@@ -282,7 +282,29 @@ export interface IProductDetailsModal {
   title: string;
   price: number;
   quantity: number;
-  handleAddToCart: () => void;
+  handleAddToCart: any;
   handleProductDetailsModal: () => void;
-  closeProductDetailsModal: () => void;
+  closeProductDetailsModal: any;
+}
+
+export interface IStore {
+  products: {
+    items: IProduct[];
+    status: String;
+    error: String;
+  };
+  cart: {
+    items: ICartItem[];
+    status: String;
+    error: String;
+  };
+}
+
+export interface IError {
+  message: string | undefined | null;
+}
+
+export interface ILoginDetails {
+  email: string;
+  password: string;
 }

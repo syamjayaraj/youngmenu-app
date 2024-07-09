@@ -1,18 +1,17 @@
+import React from "react";
+import { Provider } from "react-redux";
+import { store } from "./store";
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
-import { Platform, StyleSheet } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import HomeComponent from "./tabs/home";
-import EventComponent from "./tabs/events";
-import NotificationComponent from "./tabs/notification-component";
-import DeliveryComponent from "./tabs/delivery";
-import MoreComponent from "./tabs/more";
-import { MaterialIcons, Ionicons, AntDesign } from "@expo/vector-icons";
+import AuthScreen from "./screens/AuthScreen"; // Import the AuthScreen component
 import { NativeBaseProvider } from "native-base";
+import MainScreen from "./screens/MainScreen";
+import MainNavigator from "./MainNavigator";
 
-export default function App() {
-  const BottomTab = createBottomTabNavigator();
+const App = () => {
+  const Stack = createStackNavigator();
 
   const navTheme = {
     ...DefaultTheme,
@@ -23,101 +22,25 @@ export default function App() {
   };
 
   return (
-    <NativeBaseProvider>
-      <NavigationContainer theme={navTheme}>
-        <StatusBar style="dark" backgroundColor="white" />
-        <BottomTab.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            headerShown: false,
-            tabBarShowLabel: false,
-            tabBarActiveBackgroundColor: "#fafafa",
-            tabBarStyle: {
-              height: Platform.OS === "ios" ? 90 : 60,
-              backgroundColor: "#ffffff",
-              position: "absolute",
-              elevation: 0,
-            },
-            tabBarLabelStyle: {
-              fontSize: 10,
-              marginTop: 0,
-              marginBottom: 5,
-              color: "#2b2b2b",
-              fontWeight: "bold",
-            },
-          }}
-        >
-          <BottomTab.Screen
-            name="Home"
-            children={(props) => <HomeComponent {...props} />}
-            options={{
-              tabBarLabel: "Home",
-              tabBarIcon: ({ color, size, focused }) => (
-                <Ionicons name="home-outline" size={24} color={"#2b2b2b"} />
-              ),
-            }}
-          />
-          <BottomTab.Screen
-            name="Events"
-            component={EventComponent}
-            options={{
-              tabBarLabel: "Orders",
-              tabBarIcon: ({ color, size, focused }) => (
-                <MaterialIcons name="edit-note" size={24} color={"#2b2b2b"} />
-              ),
-            }}
-          />
-          <BottomTab.Screen
-            name="Notification"
-            component={NotificationComponent}
-            options={{
-              tabBarLabel: "അറിയിപ്പുകൾ",
-              tabBarIcon: ({ color, size, focused }) => (
-                <Ionicons
-                  name="notifications-outline"
-                  size={24}
-                  color={"#2b2b2b"}
-                />
-              ),
-            }}
-          />
-
-          <BottomTab.Screen
-            name="Delivery"
-            component={DeliveryComponent}
-            options={{
-              tabBarLabel: "ഡെലിവറി",
-              tabBarIcon: ({ color, size, focused }) => (
-                <MaterialIcons
-                  name="delivery-dining"
-                  size={24}
-                  color={"#2b2b2b"}
-                />
-              ),
-            }}
-          />
-
-          <BottomTab.Screen
-            name="More"
-            component={MoreComponent}
-            options={{
-              tabBarLabel: "Settings",
-              tabBarIcon: ({ color, size, focused }) => (
-                <Ionicons name="menu-outline" size={24} color={"#2b2b2b"} />
-              ),
-            }}
-          />
-        </BottomTab.Navigator>
-      </NavigationContainer>
-    </NativeBaseProvider>
+    <Provider store={store}>
+      <NativeBaseProvider>
+        <NavigationContainer theme={navTheme}>
+          <StatusBar style="dark" backgroundColor="white" />
+          <Stack.Navigator initialRouteName="Auth">
+            <Stack.Screen
+              name="Auth"
+              component={AuthScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Main"
+              component={MainNavigator}
+              options={{ headerShown: false }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </Provider>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+};
+export default App;

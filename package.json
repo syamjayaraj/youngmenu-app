@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@expo/metro-runtime": "~3.1.1",
+    "@react-native-async-storage/async-storage": "^1.23.1",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/native": "^6.1.9",
-    "@react-navigation/stack": "^6.3.20",
+    "@react-navigation/stack": "^6.4.0",
+    "@reduxjs/toolkit": "^2.2.6",
     "@types/react-native-snap-carousel": "^3.8.10",
     "axios": "^1.6.5",
     "deprecated-react-native-prop-types": "^5.0.0",
@@ -36,7 +38,10 @@
     "react-native-screens": "~3.29.0",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-svg": "14.1.0",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "react-redux": "^9.1.2",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
